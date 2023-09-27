@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputField from "./component/inputField";
 import ValidationMessage from "./component/validation";
+import "./App.css";
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const App = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -23,10 +25,9 @@ const App = () => {
     }
     if (!formData.password.trim()) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length <= 8) {
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
     }
-    newErrors.password = "Password must be at least 8 characters";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -34,6 +35,7 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = validateForm();
+    setSubmitted(true);
 
     if (isValid) {
       console.log("Form submitted successfully:", formData);
@@ -48,7 +50,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Team1 Application Form</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <InputField
           name="name"
           label="Name"
@@ -74,8 +76,13 @@ const App = () => {
           error={errors.email}
         />
 
-        <button type="submit">Submit</button>
+        <button type="button" onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
+      {submitted && Object.keys(errors).length === 0 && (
+        <p>Form submitted successfully!</p>
+      )}
 
       <ValidationMessage message={errors.general} />
     </div>
