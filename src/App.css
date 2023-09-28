@@ -1,10 +1,31 @@
 .App {
   font-family: Arial, sans-serif;
-  max-width: 400px;
+  height: 455px;
+  width: 415px;
   margin: 0 auto;
-  padding: 20px;
+  padding-left: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
+  background-color: hsl(0, 36%, 79%);
+  border-style: solid;
+  border-color: black;
+}
+
+h1 {
+  height: 40px;
+  width: 400px;
+  border-style: none;
+  background-color: #de9999;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  text-decoration-color: black;
 }
