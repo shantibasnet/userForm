@@ -32,8 +32,7 @@ const App = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     const isValid = validateForm();
     setSubmitted(true);
 
